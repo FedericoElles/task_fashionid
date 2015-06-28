@@ -4,7 +4,7 @@
 
 ## Design goals
 
-* Possibility to add further questions with single line of code for code and tests
+* Possibility to add further questions with single line of code for logic and tests
 * Reuse existing libraries
 * Top-down readabilty of source code
 
