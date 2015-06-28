@@ -1,0 +1,23 @@
+{
+  "name": "task_fashionid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test",
+    "start": "node index"
+  },
+  "author": "Federico Elles <federicoplus@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "alasql": "0.1.10",
+    "csvtojson": "0.3.21",
+    "express": "4.12.4",
+    "q": "1.4.1"
+  },
+  "devDependencies": {
+    "mocha": "2.2.5",
+    "should": "6.0.3",
+    "supertest": "1.0.1"
+  }
+}
