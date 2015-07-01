@@ -4,14 +4,13 @@
 // promises
 var Q = require('q');
 
+// internal helper
+var helper = require('./helper.js'); 
+
 // read file
 var fs = require('fs');
 var promiseReadFile = Q.denodeify(fs.readFile);
  
-// web server
-var express = require('express');
-var app = express(); 
-
 // CSV converter
 var Converter = require("csvtojson").core.Converter;
 var csvConverter = new Converter({});
@@ -21,13 +20,14 @@ var promiseCsvConverter = Q.nbind(csvConverter.fromString, csvConverter);
 var alasql = require('alasql');
 var db = new alasql.Database();
 
-// internal helper
-var helper = require('./helper.js'); 
+// web server
+var express = require('express');
+var app = express(); 
 
 
 /* 
-  CONFIG
-*/ 
+ * CONFIG
+ */ 
 
 var FILE = 'addressbook.csv';
 var HEADER = 'name, gender, birthday'; // CSV header
@@ -76,7 +76,6 @@ promiseReadFile(FILE)
     var answers = {};
     
     QUESTIONS.forEach(function(question, index){
-      console.log('Question: ' + question.desc);
       //HINT: Queries might only use result table twice in SQL
       //      due to static implementation
       //TODO: Add table name as flexible parameter if required
@@ -85,13 +84,12 @@ promiseReadFile(FILE)
         if (result[0].result){
           answers[question.id] = result[0].result;          
         } else {
-          answers[question.id] = 'FAIL: SQL has no required "result" column'
+          answers[question.id] = 'FAIL: SQL has no required "result" column';
         }
       } else {
-        answers[question.id] = 'FAIL: SQL has no result'
+        answers[question.id] = 'FAIL: SQL has no result';
       }
-      console.log('Answer: ' + answers[question.id]);
-    })
+    });
 
     return answers;
   })
@@ -128,7 +126,9 @@ promiseReadFile(FILE)
     var server = app.listen(3000, function () {
       var host = server.address().address;
       var port = server.address().port;
-      console.log('Example app listening at http://%s:%s', host, port);
+      if (!module.parent){
+        console.log('Example app listening at http://%s:%s', host, port);
+      }
     });
   
   })

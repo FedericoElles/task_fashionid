@@ -7,7 +7,7 @@ var request = require('supertest'),
 
 // express app with static endpoints
 var app = require('./../index.js');
-   
+    
 // expected responses by endpoints
 var ANSWERS = {
   1: '2',
