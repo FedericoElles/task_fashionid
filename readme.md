@@ -15,7 +15,7 @@
     npm install
 
 ## Test
-Unix/Linus/Mac:
+Unix/Linux/Mac:
 
     npm test
    
