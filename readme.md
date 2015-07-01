@@ -15,9 +15,14 @@
     npm install
 
 ## Test
+Unix/Linus/Mac:
 
     npm test
    
+
+On Windows, please use:
+
+    node node_modules/mocha/bin/mocha
 
 ## Run
     
