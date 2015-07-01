@@ -5,6 +5,7 @@ var helper = {};
 /** 
  * Convert date dd/mm/yy string to javascript date
  * via http://stackoverflow.com/questions/19709793/convert-date-from-dd-mm-yyyy-to-yyyy-mm-dd-in-javascript
+ * TODO: Move to own npm library
  * 
  * @param {String} String of format dd/mm/yy, e.g. 18/11/82
  * @returns {Date} Valid JS date

@@ -24,48 +24,49 @@ function getFormattedAnswer(id){
   return id + '. ' + ANSWERS[id]+ '\n'; 
 } 
 
-
 // TESTS
-
-describe('GET /questions', function(){  
-  it('respond with all available answers', function(done){
-    request(app)
-      .get('/questions')
-      .set('Accept', 'text/plain')
-      .expect(200)
-      .end(function(err, res){
-        if (err) return done(err);
-        var allAnswers = '';
-        for (var answerId in ANSWERS){
-          allAnswers += getFormattedAnswer(answerId);
-        } 
-		    res.text.should.be.equal(allAnswers);
-        done();
-      });
-  });
-});
-
-/**
- * Test a single question endpoint
- * @param id - Id of the question to validate
- */
-function testSingleQuestionAnswer(id){
-  describe('GET /questions/' + answerId, function(){  
-    it('respond with correct text answer', function(done){
+describe('index.js', function(){
+  describe('GET /questions', function(){  
+    it('respond with all available answers', function(done){
       request(app)
-        .get('/questions/' + answerId)
+        .get('/questions')
         .set('Accept', 'text/plain')
         .expect(200)
         .end(function(err, res){
           if (err) return done(err);
-  		    res.text.should.be.equal(getFormattedAnswer(answerId));
+          var allAnswers = '';
+          for (var answerId in ANSWERS){
+            allAnswers += getFormattedAnswer(answerId);
+          } 
+  		    res.text.should.be.equal(allAnswers);
           done();
         });
     });
   });
-}
-
-// Test all single question endpoints 
-for (var answerId in ANSWERS){
-  testSingleQuestionAnswer(answerId);
-}
+  
+  /**
+   * Test a single question endpoint
+   * @param id - Id of the question to validate
+   */
+  function testSingleQuestionAnswer(id){
+    describe('GET /questions/' + answerId, function(){  
+      it('respond with correct text answer', function(done){
+        request(app)
+          .get('/questions/' + answerId)
+          .set('Accept', 'text/plain')
+          .expect(200)
+          .end(function(err, res){
+            if (err) return done(err);
+    		    res.text.should.be.equal(getFormattedAnswer(answerId));
+            done();
+          });
+      });
+    });
+  }
+  
+  // Test all single question endpoints 
+  for (var answerId in ANSWERS){
+    testSingleQuestionAnswer(answerId);
+  }
+  
+});

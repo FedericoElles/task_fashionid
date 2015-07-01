@@ -14,12 +14,20 @@ describe('helper.js', function(){
   it('has function dmyStringToDate', function(){
     helper.dmyStringToDate.should.be.a.Function;
   });
+  
+  describe('function dmyStringToDate', function(){    
+    it('converts string into date with 2 digit year', function(){
+      should.equal(
+        new Date('1980-10-20').toString(),
+        helper.dmyStringToDate('20/10/80').toString()
+      );
+    });
     
-  it('dmyStringToDate converts string into date', function(){
-    should.equal(
-      new Date('1980-10-20').toString(),
-      //helper.dmyStringToDate('20/10/80').toString(),
-      helper.dmyStringToDate('20/10/80').toString()
-    );
-  });
+    it('converts string into date with 4 digit year', function(){
+      should.equal(
+        new Date('1980-10-20').toString(),
+        helper.dmyStringToDate('20/10/1980').toString()
+      );
+    });  
+  });      
 });
